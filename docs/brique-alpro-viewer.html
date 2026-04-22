@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brique Alpro — 3D Viewer</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      --poster-color: transparent;
+    }
+
+    #ar-button {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #1a1a1a;
+      border: none;
+      border-radius: 24px;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-family: sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: background 0.2s;
+    }
+
+    #ar-button:hover { background: rgba(255,255,255,1); }
+
+    #ar-prompt {
+      position: absolute;
+      left: 50%;
+      bottom: 60px;
+      transform: translateX(-50%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    #ar-prompt img { width: 40px; height: 40px; }
+
+    model-viewer[ar-status="session-started"] #ar-prompt { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <model-viewer
+    src="https://momo235.sirv.com/brique%20alpro.glb"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    tone-mapping="neutral"
+    shadow-intensity="0.63"
+    exposure="0.27"
+    shadow-softness="0.8"
+    auto-rotate
+    min-camera-orbit="auto auto 12.46m"
+    min-field-of-view="28.14deg"
+    camera-orbit="-141.2deg 85.45deg 12.87m"
+    field-of-view="30deg"
+    style="background-color: transparent;"
+  >
+    <button slot="ar-button" id="ar-button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+      View in your space
+    </button>
+
+    <div id="ar-prompt">
+      <img src="https://modelviewer.dev/shared-assets/icons/hand.png" alt="">
+    </div>
+  </model-viewer>
+
+</body>
+</html>
